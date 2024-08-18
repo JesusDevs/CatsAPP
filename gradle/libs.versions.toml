@@ -1,0 +1,61 @@
+[versions]
+agp = "8.5.2"
+kotlin = "1.9.0"
+coreKtx = "1.13.1"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+lifecycleRuntimeKtx = "2.8.4"
+activityCompose = "1.9.1"
+composeBom = "2024.06.00"
+
+navigationCompose = "2.7.7"
+coilCompose = "2.6.0"
+koin = "3.6.0-wasm-alpha2"
+okhttp = "4.12.0"
+retrofit = "2.9.0"
+retrofitKotlinxSerializationJson = "1.0.0"
+paging3 = "3.3.2"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+
+koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koin" }
+koin-android = { group = "io.insert-koin", name = "koin-android" }
+koin-core-coroutines = { group = "io.insert-koin", name = "koin-core-coroutines" }
+koin-androidx-workmanager = { group = "io.insert-koin", name = "koin-androidx-workmanager" }
+koin-androidx-navigation = { group = "io.insert-koin", name = "koin-androidx-navigation", version.ref = "koin" }
+koin-test-junit4 = { group = "io.insert-koin", name = "koin-test-junit4" }
+koin-android-test = { group = "io.insert-koin", name = "koin-android-test" }
+koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose" }
+
+io-coil-kt= { group = "io.coil-kt", name = "coil-compose", version.ref = "coilCompose" }
+androidx-navigation-compose= { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+androidx-navigation = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationCompose" }
+
+okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofitKotlinxSerializationJson" }
+retrofit-converter ={ group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+
+paging3-runtime = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "paging3" }
+paging3-common-test = { group = "androidx.paging", name = "paging-common-ktx", version.ref = "paging3" }
+paging3-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging3" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
