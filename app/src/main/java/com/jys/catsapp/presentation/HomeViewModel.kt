@@ -1,10 +1,11 @@
 package com.jys.catsapp.presentation
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.jys.core.network.model.Photo
+import com.jys.catsapp.data.network.model.Photo
 import com.jys.catsapp.domain.usecase.GetCatUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,6 +24,7 @@ class HomeViewModel(private val getCatUseCase: GetCatUseCase) : ViewModel() {
             .flowOn(Dispatchers.IO)
             .catch {}
             .collect {
+                Log.d("HomeViewModel", "getListCatPhoto: $it")
                 _catPhotoState.value = it
             }
     }

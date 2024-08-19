@@ -1,4 +1,4 @@
-package com.jys.core.generic.error
+package com.jys.catsapp.core.generic.error
 
 import android.util.Log
 

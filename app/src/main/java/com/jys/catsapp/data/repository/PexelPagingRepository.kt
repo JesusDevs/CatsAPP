@@ -1,12 +1,12 @@
-package com.jys.paging3.data.repository
+package com.jys.catsapp.data.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.jys.core.network.PexelsApiService
-import com.jys.core.network.model.Photo
+import com.jys.catsapp.data.network.PexelsApiService
+import com.jys.catsapp.data.network.model.Photo
 import com.jys.catsapp.core.utils.ConstantsUtil.PagingConstants.PAGE_SIZE
-import com.jys.paging3.data.datasource.PexelPagingDataSource
+import com.jys.catsapp.data.datasource.PexelPagingDataSource
 import com.jys.catsapp.domain.repository.PexelPagingRepositoryInterface
 import kotlinx.coroutines.flow.Flow
 

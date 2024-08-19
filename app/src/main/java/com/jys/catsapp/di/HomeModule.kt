@@ -1,7 +1,7 @@
 package com.jys.catsapp.di
 
-import com.jys.paging3.data.datasource.PexelPagingDataSource
-import com.jys.paging3.data.repository.PexelPagingRepository
+import com.jys.catsapp.data.datasource.PexelPagingDataSource
+import com.jys.catsapp.data.repository.PexelPagingRepository
 import com.jys.catsapp.domain.repository.PexelPagingRepositoryInterface
 import com.jys.catsapp.domain.usecase.GetCatUseCase
 import com.jys.catsapp.presentation.HomeViewModel

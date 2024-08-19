@@ -1,6 +1,6 @@
-package com.jys.core.network
+package com.jys.catsapp.data.network
 
-import com.jys.core.network.model.PexelResponse
+import com.jys.catsapp.data.network.model.PexelResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -1,4 +1,4 @@
-package com.jys.core.network.model
+package com.jys.catsapp.data.network.model
 
 
 import com.google.gson.annotations.SerializedName

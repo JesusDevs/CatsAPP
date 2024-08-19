@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">CatsAPP</string>
+    <string name="app_name">Cats APP</string>
+    <string name="loading">Cargando</string>
+    <string name="retry">reintentar</string>
 </resources>
