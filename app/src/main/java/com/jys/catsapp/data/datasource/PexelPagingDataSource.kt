@@ -23,23 +23,28 @@ class PexelPagingDataSource(
                 perPage = PAGE_SIZE
             )
         }
-
-        return when (response) {
+        when (response) {
             is Result.Success -> {
                 val data =  response.data.photos ?: emptyList()
-                LoadResult.Page(
+                return LoadResult.Page(
                     data = data.filterNotNull(),
                     prevKey = if (currentPage == 1) null else currentPage - 1,
                     nextKey = if (data.isEmpty()) null else currentPage + 1
                 )
             }
             is Result.Failure -> {
-                LoadResult.Error(response.exception)
+                return LoadResult.Error(response.exception)
             }
         }
     }
 
     override fun getRefreshKey(state: PagingState<Int, Photo>): Int? {
+        state.closestItemToPosition(0)?.let {
+            return state.anchorPosition
+        }
+        state.closestItemToPosition(state.pages.size - 1)?.let {
+            return state.anchorPosition
+        }
         return state.anchorPosition
     }
 }
