@@ -14,6 +14,9 @@ CATSAPP es una aplicación Android diseñada para cargar y mostrar fotos de gato
 
 ## Arquitectura del Proyecto 🏗️
 
+<img width="945" alt="Captura de pantalla 2024-08-21 a la(s) 9 42 45 a  m" src="https://github.com/user-attachments/assets/33881920-6a31-447c-84ed-0080f56f83fb">
+
+
 ### Módulo Network 🌐
 
 Gestiona todas las operaciones relacionadas con la red, incluyendo la configuración del cliente HTTP y la inyección de Data Sources. Este módulo es responsable de proporcionar las dependencias necesarias para interactuar con la API de Pexel.
