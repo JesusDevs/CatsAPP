@@ -26,7 +26,7 @@ class HomeViewModel(private val getCatUseCase: GetCatUseCase) : ViewModel() {
             .cachedIn(viewModelScope)
             .flowOn(Dispatchers.IO)
             .map {
-                it.filter { photo -> photo.photographerId != null }
+                it.filter { photo -> photo.src?.tiny != null }
             }
             .catch {}
             .collect {

@@ -19,6 +19,9 @@ import com.jys.catsapp.presentation.components.TopBar
 import com.jys.catsapp.data.network.model.Photo
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.currentKoinScope
+import org.koin.compose.scope.rememberKoinScope
+import org.koin.core.Koin
 
 @Composable
 fun HomeScreen() {

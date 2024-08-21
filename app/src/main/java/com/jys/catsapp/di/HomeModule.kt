@@ -12,10 +12,8 @@ import org.koin.dsl.module
 
 
 val homeModule = module {
-
-    factoryOf(::PexelPagingDataSource)
-    factoryOf(::GetCatUseCase)
-    factory<PexelPagingRepositoryInterface> { PexelPagingRepository(get()) }
-    viewModelOf(::HomeViewModel)
-
+        factoryOf(::PexelPagingDataSource)
+        factoryOf(::GetCatUseCase)
+        single<PexelPagingRepositoryInterface> { PexelPagingRepository(get()) }
+        viewModelOf(::HomeViewModel)
 }
