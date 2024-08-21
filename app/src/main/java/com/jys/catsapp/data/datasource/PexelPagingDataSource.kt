@@ -39,13 +39,10 @@ class PexelPagingDataSource(
     }
 
     override fun getRefreshKey(state: PagingState<Int, Photo>): Int? {
-        state.closestItemToPosition(0)?.let {
-            return state.anchorPosition
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
-        state.closestItemToPosition(state.pages.size - 1)?.let {
-            return state.anchorPosition
-        }
-        return state.anchorPosition
     }
 }
 
