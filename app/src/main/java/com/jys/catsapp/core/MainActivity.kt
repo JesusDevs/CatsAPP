@@ -23,17 +23,13 @@ import org.koin.androidx.compose.KoinAndroidContext
 import org.koin.core.annotation.KoinExperimentalAPI
 
 class MainActivity : ComponentActivity() {
-    @OptIn(KoinExperimentalAPI::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             EnableTransparentStatusBar()
             CatsAPPTheme {
-
-                KoinAndroidContext {
-                    Navigation()
-                }
+                Navigation()
             }
         }
     }

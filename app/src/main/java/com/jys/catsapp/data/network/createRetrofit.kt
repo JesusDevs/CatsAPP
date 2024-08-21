@@ -11,9 +11,9 @@ fun createRetrofit(baseUrl: String, authHeader: String? = null): Retrofit {
 
     authHeader?.let {
         clientBuilder
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .readTimeout(30, TimeUnit.SECONDS)
-            .writeTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(5, TimeUnit.SECONDS)
+            .readTimeout(5, TimeUnit.SECONDS)
+            .writeTimeout(5, TimeUnit.SECONDS)
             .addInterceptor { chain ->
                 val request = chain.request().newBuilder()
                     .addHeader(AUTHORIZATION, it)
