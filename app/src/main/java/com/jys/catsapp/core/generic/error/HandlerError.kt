@@ -1,8 +1,5 @@
 package com.jys.catsapp.core.generic.error
 
-import android.util.Log
-import java.net.SocketTimeoutException
-
 suspend fun <T> safeApiCall(call: suspend () -> retrofit2.Response<T>): Result<T> {
     return try {
         val response = call()
@@ -11,9 +8,9 @@ suspend fun <T> safeApiCall(call: suspend () -> retrofit2.Response<T>): Result<T
         } else {
             Result.Failure(exception = Exception(response.errorBody()?.string() ?: "Unknown Error"))
         }
-    } catch (e: SocketTimeoutException) {
+    }catch (e: Exception) {
         Result.Failure(exception = e)
-    }  catch (e: Exception) {
+    } catch (e: Throwable) {
         Result.Failure(exception = e)
     }
 }
