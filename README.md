@@ -1,4 +1,4 @@
-Documentación Completa del Proyecto CATSAPP
+Documentación Proyecto CATSAPP
 
 Descripción General
 
