@@ -12,6 +12,19 @@ CATSAPP es una aplicación Android diseñada para cargar y mostrar fotos de gato
 - **Paging 3**: Librería para manejo de paginación eficiente de grandes conjuntos de datos.
 - **Koin**: Librería ligera para la inyección de dependencias en aplicaciones Kotlin.
 
+## Obtener la API Key de Pexel
+
+- **Ve a la página Pexels.**
+- **Regístrate o inicia sesión si ya tienes una cuenta.**
+- **Una vez dentro, dirígete a la sección API.**
+- **Crea una nueva aplicación para obtener tu API Key.**
+- **Copia la API Key que te proporcionen, ya que la necesitarás para configurar la aplicación.**
+
+## Configurar la API Key en local.properties
+
+- **Abre el archivo local.properties en la raíz de tu proyecto Android.**
+- **Añade la siguiente línea API_KEY_PEXEL = YOUR_API_KEY, reemplazando YOUR_API_KEY con la clave que obtuviste de Pexel.**
+
 ## Arquitectura del Proyecto 🏗️
 
 <img width="945" alt="Captura de pantalla 2024-08-21 a la(s) 9 42 45 a  m" src="https://github.com/user-attachments/assets/33881920-6a31-447c-84ed-0080f56f83fb">
