@@ -1,6 +1,7 @@
 package com.jys.catsapp.core
 
 import android.app.Application
+import com.jys.catsapp.di.databaseModule
 import com.jys.catsapp.di.homeModule
 import com.jys.catsapp.di.networkModule
 
@@ -12,7 +13,7 @@ class App :Application() {
         super.onCreate()
         startKoin {
             androidContext(this@App)
-            modules(networkModule, homeModule)
+            modules(networkModule, homeModule, databaseModule)
         }
     }
 }

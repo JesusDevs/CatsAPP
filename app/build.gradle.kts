@@ -3,7 +3,7 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("com.google.devtools.ksp") version libs.versions.ksp.get()  // Configura la versión de KSP
+    id("com.google.devtools.ksp") version libs.versions.ksp.get()
 
 }
 
