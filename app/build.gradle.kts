@@ -3,6 +3,8 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("com.google.devtools.ksp") version libs.versions.ksp.get()  // Configura la versión de KSP
+
 }
 
 android {
@@ -96,4 +98,12 @@ dependencies {
     api(libs.paging3.compose)
     api(libs.paging3.runtime)
     testApi(libs.paging3.common.test)
+
+    implementation(libs.room.runtime)
+
+    ksp(libs.room.compiler)
+    implementation(libs.room.ktx)
+    implementation(libs.room.paging)
+    implementation(libs.room.testing)
+
 }

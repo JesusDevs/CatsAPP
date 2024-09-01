@@ -3,6 +3,7 @@ package com.jys.catsapp.data.network.model
 
 import com.google.gson.annotations.SerializedName
 
+
 data class Photo(
     @SerializedName("alt")
     val alt: String?,
@@ -21,7 +22,7 @@ data class Photo(
     @SerializedName("photographer_url")
     val photographerUrl: String?,
     @SerializedName("src")
-    val src: Src?,
+    val src: Src,
     @SerializedName("url")
     val url: String?,
     @SerializedName("width")

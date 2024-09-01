@@ -8,6 +8,7 @@ espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.4"
 activityCompose = "1.9.1"
 composeBom = "2024.06.00"
+ksp = "2.0.0-1.0.22"
 
 navigationCompose = "2.7.7"
 coilCompose = "2.6.0"
@@ -16,6 +17,7 @@ okhttp = "4.12.0"
 retrofit = "2.9.0"
 retrofitKotlinxSerializationJson = "1.0.0"
 paging3 = "3.3.2"
+androidx-room = "2.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -32,6 +34,16 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidx-room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx-room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "androidx-room" }
+room-paging = { group = "androidx.room", name = "room-paging", version.ref = "androidx-room" }
+room-testing = { group = "androidx.room", name = "room-testing", version.ref = "androidx-room" }
+
+ksp = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "ksp" }
+ksp-compiler = { group = "com.google.devtools.ksp", name = "ksp-compiler", version.ref = "ksp" }
+ksp-processor = { group = "com.google.devtools.ksp", name = "ksp-processor", version.ref = "ksp" }
 
 koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koin" }
 koin-android = { group = "io.insert-koin", name = "koin-android" }
@@ -54,6 +66,7 @@ retrofit-converter ={ group = "com.squareup.retrofit2", name = "converter-gson",
 paging3-runtime = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "paging3" }
 paging3-common-test = { group = "androidx.paging", name = "paging-common-ktx", version.ref = "paging3" }
 paging3-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging3" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
