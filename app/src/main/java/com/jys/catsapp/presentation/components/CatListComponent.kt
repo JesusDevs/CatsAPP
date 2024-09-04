@@ -10,7 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.itemKey
 import com.jys.catsapp.data.network.model.Photo
+import com.jys.catsapp.domain.model.PhotoDomain
 
 @Composable
 fun CatListComponent(
@@ -31,6 +33,61 @@ fun CatListComponent(
                     modifier = Modifier.padding(top = 8.dp),
                     photoItem = it,
                     onClick = { catPhotoPagingItems[index] })
+            }
+        }
+        catPhotoPagingItems.run {
+            when {
+                loadState.refresh is LoadState.Loading -> {
+                    item { PageLoader(modifier = Modifier.fillParentMaxSize()) }
+                }
+
+                loadState.refresh is LoadState.Error -> {
+                    val error = catPhotoPagingItems.loadState.refresh as LoadState.Error
+                    item {
+                        ErrorMessageFullScreen(
+                            modifier = Modifier.fillParentMaxSize(),
+                            message = error.error.localizedMessage!!,
+                            onClickRetry = { retry() })
+                    }
+                }
+
+                loadState.append is LoadState.Loading -> {
+                    item { LoadingNextPageItem(modifier = Modifier) }
+                }
+
+                loadState.append is LoadState.Error -> {
+                    val errorBottom = catPhotoPagingItems.loadState.append as LoadState.Error
+                    item {
+                        ErrorMessageNextPageItem(
+                            modifier =Modifier.padding(vertical = 8.dp),
+                            message = errorBottom.error.localizedMessage!!,
+                            onClickRetry = { retry() })
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun CatListComponentWithRoom(
+    modifier: Modifier = Modifier,
+    paddingValues: PaddingValues,
+    catPhotoPagingItems: LazyPagingItems<PhotoDomain>,
+) {
+    LazyColumn(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(paddingValues)
+            .padding(horizontal = 16.dp)
+        ,
+    ) {
+        items(catPhotoPagingItems.itemCount , key = {catPhotoPagingItems.itemKey()}) { index ->
+            catPhotoPagingItems[index]?.let {
+                PhotoItemDomain(
+                    modifier = Modifier.padding(top = 8.dp),
+                    photoItem = it
+                )
             }
         }
         catPhotoPagingItems.run {

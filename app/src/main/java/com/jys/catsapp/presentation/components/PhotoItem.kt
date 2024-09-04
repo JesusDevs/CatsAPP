@@ -16,12 +16,41 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.jys.catsapp.core.common.createCustomImageLoader
 import com.jys.catsapp.data.network.model.Photo
+import com.jys.catsapp.domain.model.PhotoDomain
 
 @Composable
 fun PhotoItem(
     modifier: Modifier = Modifier,
     photoItem: Photo,
     onClick: () -> Photo?
+) {
+    Card(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(200.dp),
+        shape = RoundedCornerShape(16.dp),
+        border = BorderStroke(1.dp, Color.White),
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            AsyncImage(
+                imageLoader = createCustomImageLoader(LocalContext.current),
+                modifier = Modifier
+                    .fillMaxSize(),
+                contentScale = ContentScale.FillWidth,
+                model = photoItem.src?.medium,
+                contentDescription = ""
+            )
+        }
+    }
+}
+
+@Composable
+fun PhotoItemDomain(
+    modifier: Modifier = Modifier,
+    photoItem: PhotoDomain,
 ) {
     Card(
         modifier = modifier

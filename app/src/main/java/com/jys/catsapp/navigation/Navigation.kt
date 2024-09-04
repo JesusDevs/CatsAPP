@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.jys.catsapp.presentation.HomeScreen
+import com.jys.catsapp.presentation.HomeScreenWithRoom
 
 @Composable
 fun Navigation() {
@@ -14,7 +15,8 @@ fun Navigation() {
         startDestination = "home",
     ) {
         composable("home") {
-            HomeScreen()
+           // HomeScreen()
+            HomeScreenWithRoom()
         }
     }
 }
