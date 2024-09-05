@@ -34,7 +34,7 @@ class PexelPagingRepository(
 
         return Pager(
             config = PagingConfig(pageSize = PAGE_SIZE),
-            remoteMediator = PexelRemoteMediator(query, apiService, database.photoDao(), database),
+            remoteMediator = PexelRemoteMediator(query, apiService, database.photoDao(),database.photoRemoteKeyDao() ,  database),
             pagingSourceFactory = pagingSourceFactory
         ).flow
     }

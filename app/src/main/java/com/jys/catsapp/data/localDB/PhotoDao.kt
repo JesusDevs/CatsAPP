@@ -2,16 +2,14 @@ package com.jys.catsapp.data.localDB
 
 import androidx.paging.PagingSource
 import androidx.room.Dao
+import androidx.room.Entity
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
+import androidx.room.PrimaryKey
 import androidx.room.Query
 
 @Dao
 interface PhotoDao {
-
-    // Método para obtener fotos paginadas con límites y offsets específicos (sin PagingSource)
-    @Query("SELECT * FROM photos LIMIT :limit OFFSET :offset")
-    suspend fun getAllPhotosPaginated(limit: Int, offset: Int): List<PhotoEntity>
 
     @Query("SELECT * FROM photos")
     fun getAllPhotos(): PagingSource<Int, PhotoEntity>
@@ -23,3 +21,23 @@ interface PhotoDao {
     suspend fun clearAll()
 }
 
+
+@Dao
+interface PhotoRemoteKeyDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertOrReplace(remoteKey: PhotoRemoteKey)
+
+    @Query("SELECT * FROM photo_remote_keys WHERE photoId = :photoId")
+    suspend fun remoteKeyByPhoto(photoId: String): PhotoRemoteKey?
+
+    @Query("DELETE FROM photo_remote_keys")
+    suspend fun clearRemoteKeys()
+}
+
+
+@Entity(tableName = "photo_remote_keys")
+data class PhotoRemoteKey(
+    @PrimaryKey val photoId: String,
+    val prevPageKey: Int?,  // Clave para la página anterior
+    val nextPageKey: Int?   // Clave para la próxima página
+)

@@ -16,7 +16,7 @@ fun HomeScreenWithRoom() {
     val viewModel: HomeViewModel = koinViewModel()
     val stateUI = viewModel.catPhotoStateRoom.collectAsLazyPagingItems()
     LaunchedEffect(Unit) {
-        viewModel.getListCatPhoto()
+        viewModel.getListCatPhotoWithRoom()
     }
     HomeScreenContentWithRoom(stateUI)
 }

@@ -82,7 +82,7 @@ fun CatListComponentWithRoom(
             .padding(horizontal = 16.dp)
         ,
     ) {
-        items(catPhotoPagingItems.itemCount , key = {catPhotoPagingItems.itemKey()}) { index ->
+        items(catPhotoPagingItems.itemCount,key = { index -> catPhotoPagingItems[index]?.id ?: index }  ) { index ->
             catPhotoPagingItems[index]?.let {
                 PhotoItemDomain(
                     modifier = Modifier.padding(top = 8.dp),
@@ -91,7 +91,7 @@ fun CatListComponentWithRoom(
             }
         }
         catPhotoPagingItems.run {
-            when {
+       when {
                 loadState.refresh is LoadState.Loading -> {
                     item { PageLoader(modifier = Modifier.fillParentMaxSize()) }
                 }
