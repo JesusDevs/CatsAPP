@@ -8,7 +8,6 @@ import androidx.compose.ui.Modifier
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.jys.catsapp.domain.model.PhotoDomain
-import com.jys.catsapp.presentation.components.CatListComponentRoom
 import com.jys.catsapp.presentation.components.CatListComponentWithRoom
 import org.koin.androidx.compose.koinViewModel
 
@@ -27,17 +26,13 @@ private fun HomeScreenContentWithRoom(
     stateUI: LazyPagingItems<PhotoDomain>
 ) {
     Scaffold(
-        modifier = Modifier.fillMaxSize(),) { paddingValues ->
+        modifier = Modifier.fillMaxSize()
+    ) { paddingValues ->
       CatListComponentWithRoom(
             modifier = Modifier,
             paddingValues = paddingValues,
             catPhotoPagingItems = stateUI
         )
-
-       /* CatListComponentRoom(
-
-            catPhotoPagingItems = stateUI
-        )*/
     }
 }
 

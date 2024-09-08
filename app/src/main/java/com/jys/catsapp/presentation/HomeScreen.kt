@@ -47,7 +47,6 @@ private fun HomeScreenContent(
     }
 }
 
-@SuppressLint("RememberReturnType")
 @Preview
 @Composable
 fun HomeScreenPreview() {
