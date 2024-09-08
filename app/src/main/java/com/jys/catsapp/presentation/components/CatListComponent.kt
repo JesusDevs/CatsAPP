@@ -83,7 +83,6 @@ fun CatListComponentWithRoom(
 ) {
     LazyColumn(
         modifier = modifier
-            .fillMaxSize()
             .padding(paddingValues)
             .padding(horizontal = 16.dp)
         ,

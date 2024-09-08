@@ -39,7 +39,6 @@ class HomeViewModel(
             }
             .catch {}
             .collect {
-                Log.d("HomeViewModel", "getListCatPhoto: $it")
                 _catPhotoState.value = it
             }
     }

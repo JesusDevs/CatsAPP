@@ -15,6 +15,7 @@ import com.jys.catsapp.domain.repository.PexelPagingRepositoryInterface
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 
 class PexelPagingRepository(
@@ -35,10 +36,16 @@ class PexelPagingRepository(
         val pagingSourceFactory = { database.photoDao().getAllPhotos() }
 
         return Pager(
-            config = PagingConfig(pageSize = 10, enablePlaceholders = true, prefetchDistance = 5 , initialLoadSize = 100, maxSize = 200),
+           config = PagingConfig(
+                pageSize = 40,  // Tamaño de cada página de datos
+                enablePlaceholders = true,  // Habilitar placeholders para cuando no haya datos
+                prefetchDistance = 4,  // Realiza la carga cuando el usuario esté a 5 ítems del final
+                initialLoadSize = 20,  // Tamaño de la carga inicial
+                maxSize = 8000 // Máximo número de ítems a mantener en la memoria
+            ),
             remoteMediator = PexelRemoteMediator(query, apiService, database.photoDao(),database.photoRemoteKeyDao() ,  database),
             pagingSourceFactory = pagingSourceFactory
-        ).flow
+        ).flow.distinctUntilChanged().debounce(1000)
     }
 }
 
