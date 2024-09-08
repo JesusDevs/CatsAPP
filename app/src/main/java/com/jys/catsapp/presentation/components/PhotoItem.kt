@@ -68,7 +68,7 @@ fun PhotoItemDomain(
                 modifier = Modifier
                     .fillMaxSize(),
                 contentScale = ContentScale.FillWidth,
-                model = photoItem.src?.medium,
+                model = photoItem.src.tiny,
                 contentDescription = ""
             )
         }

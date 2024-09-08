@@ -12,7 +12,9 @@ import com.jys.catsapp.data.datasource.PexelRemoteMediator
 import com.jys.catsapp.data.localDB.CatsDatabase
 import com.jys.catsapp.data.localDB.PhotoEntity
 import com.jys.catsapp.domain.repository.PexelPagingRepositoryInterface
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.map
 
 class PexelPagingRepository(
@@ -28,12 +30,12 @@ class PexelPagingRepository(
     }
 
 
-    @OptIn(ExperimentalPagingApi::class)
+    @OptIn(ExperimentalPagingApi::class, FlowPreview::class)
     override fun getPhotosWithRoom(query: String): Flow<PagingData<PhotoEntity>> {
         val pagingSourceFactory = { database.photoDao().getAllPhotos() }
 
         return Pager(
-            config = PagingConfig(pageSize = PAGE_SIZE),
+            config = PagingConfig(pageSize = 10, enablePlaceholders = true, prefetchDistance = 5 , initialLoadSize = 100, maxSize = 200),
             remoteMediator = PexelRemoteMediator(query, apiService, database.photoDao(),database.photoRemoteKeyDao() ,  database),
             pagingSourceFactory = pagingSourceFactory
         ).flow

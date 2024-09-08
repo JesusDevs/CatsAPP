@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -15,6 +16,7 @@ import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemKey
+import com.jys.catsapp.data.localDB.PhotoEntity
 import com.jys.catsapp.data.network.model.Photo
 import com.jys.catsapp.domain.model.PhotoDomain
 
@@ -73,7 +75,6 @@ fun CatListComponent(
     }
 }
 
-/*
 @Composable
 fun CatListComponentWithRoom(
     modifier: Modifier = Modifier,
@@ -87,8 +88,9 @@ fun CatListComponentWithRoom(
             .padding(horizontal = 16.dp)
         ,
     ) {
-       // val loadState = catPhotoPagingItems.loadState.mediator
-        items(catPhotoPagingItems.itemCount,key = { index -> catPhotoPagingItems[index]?.id ?: index }  ) { index ->
+        val loadState = catPhotoPagingItems.loadState.mediator
+
+        items(catPhotoPagingItems.itemSnapshotList.items.size,key = { index -> catPhotoPagingItems[index]?.id ?: index }  ) { index ->
             catPhotoPagingItems[index]?.let {
                 PhotoItemDomain(
                     modifier = Modifier.padding(top = 8.dp),
@@ -96,7 +98,7 @@ fun CatListComponentWithRoom(
                 )
             }
         }
-        catPhotoPagingItems.run {
+        catPhotoPagingItems.apply {
        when {
                 loadState?.refresh is LoadState.Loading -> {
                     item { PageLoader(modifier = Modifier.fillParentMaxSize()) }
@@ -128,72 +130,26 @@ fun CatListComponentWithRoom(
             }
         }
     }
-}*/
-
+}
 @Composable
-fun CatListComponentWithRoom(
-    modifier: Modifier = Modifier,
-    paddingValues: PaddingValues,
-    catPhotoPagingItems: LazyPagingItems<PhotoDomain>,
-    listState: LazyListState = rememberLazyListState(), // Estado del LazyColumn
-) {
-    LazyColumn(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(paddingValues)
-            .padding(horizontal = 16.dp),
-        state = listState // Pasamos el LazyListState
-    ) {
-        // Mostrar los elementos de la lista
-        items(
-            count = catPhotoPagingItems.itemCount,
-            key = { index -> catPhotoPagingItems[index]?.id ?: index }
-        ) { index ->
-            catPhotoPagingItems[index]?.let {
-                PhotoItemDomain(
-                    modifier = Modifier.padding(top = 8.dp),
-                    photoItem = it
-                )
-            }
+fun CatListComponentRoom(catPhotoPagingItems: LazyPagingItems<PhotoDomain>) {
+    when (val state = catPhotoPagingItems.loadState.mediator?.refresh) {
+        is LoadState.Loading -> {
+            // Mostrar loader mientras se cargan los datos
+            CircularProgressIndicator()
         }
-
-        // Manejar el estado de carga y errores en la misma LazyColumn
-        when {
-            // Si se está cargando la primera página
-            catPhotoPagingItems.loadState.refresh is LoadState.Loading -> {
-                item {
-                    PageLoader(modifier = Modifier.fillParentMaxSize())
-                }
-            }
-
-            // Si hay un error al cargar la primera página
-            catPhotoPagingItems.loadState.refresh is LoadState.Error -> {
-                val error = catPhotoPagingItems.loadState.refresh as LoadState.Error
-                item {
-                    ErrorMessageFullScreen(
-                        modifier = Modifier.fillParentMaxSize(),
-                        message = error.error.localizedMessage ?: "Unknown error",
-                        onClickRetry = { catPhotoPagingItems.retry() }
-                    )
-                }
-            }
-
-            // Si se está cargando la siguiente página (scroll infinito)
-            catPhotoPagingItems.loadState.append is LoadState.Loading -> {
-                item {
-                    LoadingNextPageItem(modifier = Modifier)
-                }
-            }
-
-            // Si hubo un error al cargar la siguiente página
-            catPhotoPagingItems.loadState.append is LoadState.Error -> {
-                val errorBottom = catPhotoPagingItems.loadState.append as LoadState.Error
-                item {
-                    ErrorMessageNextPageItem(
-                        modifier = Modifier.padding(vertical = 8.dp),
-                        message = errorBottom.error.localizedMessage ?: "Unknown error",
-                        onClickRetry = { catPhotoPagingItems.retry() }
-                    )
+        is LoadState.Error -> {
+            // Mostrar error
+            Text(text = "Error: ${state.error.localizedMessage}")
+        }
+        else -> {
+            // Mostrar lista de elementos
+            LazyColumn {
+                items(catPhotoPagingItems.itemCount) { index ->
+                    val item = catPhotoPagingItems[index]
+                    item?.let { photo ->
+                        Text(text = photo.photographerId.toString()) // Renderizar ítems
+                    }
                 }
             }
         }

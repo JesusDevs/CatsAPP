@@ -5,7 +5,6 @@ import androidx.room.PrimaryKey
 import com.jys.catsapp.data.network.model.Photo
 import com.jys.catsapp.data.network.model.Src
 
-
 @Entity(tableName = "photos")
 data class PhotoEntity(
     @PrimaryKey val id: Int?,
@@ -19,7 +18,8 @@ data class PhotoEntity(
     val photographerId: Int?,
     val photographerUrl: String?,
     val width: Int?,
-    val pageNumber: Int? = 0
+    val pageNumber: Int? = 0,
+    var position: Int? = 0 // Campo agregado para el orden
 )
 
 

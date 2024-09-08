@@ -11,7 +11,7 @@ import androidx.room.Query
 @Dao
 interface PhotoDao {
 
-    @Query("SELECT * FROM photos")
+    @Query("SELECT * FROM photos ORDER BY pageNumber ASC, position ASC")
     fun getAllPhotos(): PagingSource<Int, PhotoEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -20,6 +20,7 @@ interface PhotoDao {
     @Query("DELETE FROM photos")
     suspend fun clearAll()
 }
+
 
 
 @Dao

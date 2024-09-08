@@ -54,6 +54,7 @@ fun PhotoEntity.toDomain(): PhotoDomain {
     )
 }
 
+
 fun SrcEntity.toDomain(): SrcDomain {
     return SrcDomain(
         original = this.original,
