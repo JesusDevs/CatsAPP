@@ -81,7 +81,7 @@ fun CatListComponentWithRoom(
             .padding(paddingValues)
             .padding(horizontal = Dimens16Dp)
     ) {
-        val loadState = catPhotoPagingItems.loadState.mediator
+        val loadState = catPhotoPagingItems.loadState
 
         items(
             catPhotoPagingItems.itemCount) { index ->
