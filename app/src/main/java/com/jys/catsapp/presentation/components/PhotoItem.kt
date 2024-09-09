@@ -14,6 +14,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.jys.catsapp.core.common.DimensUtil.Dimens150Dp
+import com.jys.catsapp.core.common.DimensUtil.Dimens16Dp
+import com.jys.catsapp.core.common.DimensUtil.Dimens1Dp
 import com.jys.catsapp.core.common.createCustomImageLoader
 import com.jys.catsapp.data.network.model.Photo
 import com.jys.catsapp.domain.model.PhotoDomain
@@ -27,9 +30,9 @@ fun PhotoItem(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .height(200.dp),
-        shape = RoundedCornerShape(16.dp),
-        border = BorderStroke(1.dp, Color.White),
+            .height(Dimens150Dp),
+        shape = RoundedCornerShape(Dimens16Dp),
+        border = BorderStroke(Dimens1Dp, Color.White),
     ) {
         Box(
             modifier = Modifier
@@ -40,7 +43,7 @@ fun PhotoItem(
                 modifier = Modifier
                     .fillMaxSize(),
                 contentScale = ContentScale.FillWidth,
-                model = photoItem.src?.medium,
+                model = photoItem.src.tiny,
                 contentDescription = ""
             )
         }
@@ -55,9 +58,9 @@ fun PhotoItemDomain(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .height(200.dp),
-        shape = RoundedCornerShape(16.dp),
-        border = BorderStroke(1.dp, Color.White),
+            .height(Dimens150Dp),
+        shape = RoundedCornerShape(Dimens16Dp),
+        border = BorderStroke(Dimens1Dp, Color.White),
     ) {
         Box(
             modifier = Modifier

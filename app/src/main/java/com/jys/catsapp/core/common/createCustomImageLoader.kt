@@ -9,13 +9,12 @@ import com.jys.catsapp.R
 
 fun createCustomImageLoader(context: Context): ImageLoader {
     return ImageLoader.Builder(context)
-        .crossfade(true)
         .diskCachePolicy(CachePolicy.ENABLED)
         .memoryCachePolicy(CachePolicy.ENABLED)
         .diskCache {
             DiskCache.Builder()
                 .directory(context.cacheDir.resolve("image_cache"))
-                .maxSizePercent(0.02)
+                .maxSizePercent(0.25)
                 .build()
         }
         .memoryCache {
@@ -23,8 +22,6 @@ fun createCustomImageLoader(context: Context): ImageLoader {
                 .maxSizePercent(0.25)
                 .build()
         }
-        .networkObserverEnabled(true)
-        .placeholder(R.drawable.ic_launcher_foreground)
         .build()
 }
 

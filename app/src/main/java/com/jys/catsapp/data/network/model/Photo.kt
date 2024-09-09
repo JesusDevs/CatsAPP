@@ -3,7 +3,7 @@ package com.jys.catsapp.data.network.model
 
 import com.google.gson.annotations.SerializedName
 import com.jys.catsapp.data.localDB.PhotoEntity
-import com.jys.catsapp.data.localDB.toEntity
+import com.jys.catsapp.data.mapper.toEntity
 
 
 data class Photo(
@@ -44,6 +44,6 @@ fun Photo.toEntity(page: Int, position: Int): PhotoEntity {
         alt = this.alt,
         liked = this.liked,
         pageNumber = page,
-        position = position // Usamos la posición para ordenar
+        position = position
     )
 }

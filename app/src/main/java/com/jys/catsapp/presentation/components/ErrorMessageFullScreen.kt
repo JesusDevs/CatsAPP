@@ -23,6 +23,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jys.catsapp.R
+import com.jys.catsapp.core.common.DimensUtil.Dimens1Dp
+import com.jys.catsapp.core.common.DimensUtil.Dimens32Dp
+import com.jys.catsapp.core.common.DimensUtil.Dimens8Dp
 import com.jys.catsapp.core.theme.Orange
 
 @Composable
@@ -41,14 +44,14 @@ fun ErrorMessageFullScreen(
         Image(
             modifier = Modifier.fillMaxWidth(),
             contentScale = ContentScale.FillWidth,
-            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+            painter = painterResource(id = R.drawable.splash_cat_samu),
             contentDescription = ""
         )
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(Dimens32Dp))
         Text(
             text = message,
             color = MaterialTheme.colorScheme.error,
-            modifier = Modifier.padding(bottom = 8.dp),
+            modifier = Modifier.padding(bottom = Dimens8Dp),
             maxLines = 2,
             textAlign = androidx.compose.ui.text.style.TextAlign.Center
         )
@@ -56,7 +59,7 @@ fun ErrorMessageFullScreen(
         Button(
             modifier = Modifier,
             onClick = onClickRetry,
-            border = BorderStroke(1.dp, Color.Cyan)
+            border = BorderStroke(Dimens1Dp, Color.Cyan)
         ) {
             Text(
                 text = stringResource(id = R.string.retry),
@@ -64,7 +67,7 @@ fun ErrorMessageFullScreen(
                 color = Color.White
             )
         }
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(Dimens32Dp))
     }
 
 }

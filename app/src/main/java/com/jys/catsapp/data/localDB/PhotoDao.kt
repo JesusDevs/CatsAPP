@@ -23,22 +23,7 @@ interface PhotoDao {
 
 
 
-@Dao
-interface PhotoRemoteKeyDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertOrReplace(remoteKey: PhotoRemoteKey)
-
-    @Query("SELECT * FROM photo_remote_keys WHERE photoId = :photoId")
-    suspend fun remoteKeyByPhoto(photoId: String): PhotoRemoteKey?
-
-    @Query("DELETE FROM photo_remote_keys")
-    suspend fun clearRemoteKeys()
-}
 
 
-@Entity(tableName = "photo_remote_keys")
-data class PhotoRemoteKey(
-    @PrimaryKey val photoId: String,
-    val prevPageKey: Int?,  // Clave para la página anterior
-    val nextPageKey: Int?   // Clave para la próxima página
-)
+
+

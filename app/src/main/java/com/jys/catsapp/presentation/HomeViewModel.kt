@@ -1,6 +1,7 @@
 package com.jys.catsapp.presentation
 
 import android.util.Log
+import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -15,6 +16,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
 
 class HomeViewModel(
@@ -30,12 +32,20 @@ class HomeViewModel(
         MutableStateFlow(value = PagingData.empty())
     val catPhotoStateRoom: MutableStateFlow<PagingData<PhotoDomain>> get() = _catPhotoStateRoom
 
+
+    init {
+       viewModelScope.launch {
+           //getListCatPhoto()
+           getListCatPhotoWithRoom()
+       }
+    }
+
     suspend fun getListCatPhoto() {
         getCatUseCase.execute(Unit)
             .cachedIn(viewModelScope)
             .flowOn(Dispatchers.IO)
             .map {
-                it.filter { photo -> photo.src?.tiny != null }
+                it.filter { photo -> photo.src.tiny != null }
             }
             .catch {}
             .collect {
@@ -43,7 +53,7 @@ class HomeViewModel(
             }
     }
 
-    suspend fun getListCatPhotoWithRoom() {
+    private suspend fun getListCatPhotoWithRoom() {
         getCatUseCaseWithRoom.execute(Unit)
             .cachedIn(viewModelScope)
             .flowOn(Dispatchers.IO)

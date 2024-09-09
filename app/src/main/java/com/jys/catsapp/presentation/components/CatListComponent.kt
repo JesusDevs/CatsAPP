@@ -9,8 +9,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
+import com.jys.catsapp.core.common.DimensUtil.Dimens150Dp
+import com.jys.catsapp.core.common.DimensUtil.Dimens16Dp
+import com.jys.catsapp.core.common.DimensUtil.Dimens8Dp
 import com.jys.catsapp.data.network.model.Photo
 import com.jys.catsapp.domain.model.PhotoDomain
+import okhttp3.internal.wait
 
 @Composable
 fun CatListComponent(
@@ -73,18 +77,17 @@ fun CatListComponentWithRoom(
     catPhotoPagingItems: LazyPagingItems<PhotoDomain>,
 ) {
     LazyColumn(
-        modifier = modifier
+        modifier = modifier.fillMaxSize()
             .padding(paddingValues)
-            .padding(horizontal = 16.dp)
+            .padding(horizontal = Dimens16Dp)
     ) {
         val loadState = catPhotoPagingItems.loadState.mediator
 
         items(
-            catPhotoPagingItems.itemCount,
-            key = { index -> catPhotoPagingItems[index]?.id ?: index }) { index ->
+            catPhotoPagingItems.itemCount) { index ->
             catPhotoPagingItems[index]?.let {
                 PhotoItemDomain(
-                    modifier = Modifier.padding(top = 8.dp),
+                    modifier = Modifier.padding(top = Dimens8Dp),
                     photoItem = it
                 )
             }
@@ -113,7 +116,7 @@ fun CatListComponentWithRoom(
                     val errorBottom = catPhotoPagingItems.loadState.append as LoadState.Error
                     item {
                         ErrorMessageNextPageItem(
-                            modifier = Modifier.padding(vertical = 8.dp),
+                            modifier = Modifier.padding(vertical = Dimens8Dp),
                             message = errorBottom.error.localizedMessage!!,
                             onClickRetry = { retry() })
                     }
