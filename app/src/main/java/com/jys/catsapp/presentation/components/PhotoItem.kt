@@ -14,8 +14,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import coil.compose.AsyncImage
+import coil.disk.DiskCache
+import coil.memory.MemoryCache
 import coil.request.CachePolicy
 import coil.request.ImageRequest
+import coil.util.DebugLogger
 import com.jys.catsapp.R
 import com.jys.catsapp.core.common.DimensUtil.Dimens150Dp
 import com.jys.catsapp.core.common.DimensUtil.Dimens16Dp
@@ -67,11 +70,11 @@ fun PhotoItem(
 fun PhotoItemDomain(
     modifier: Modifier = Modifier,
     photoItem: PhotoDomain,
-    onClick: () -> PhotoDomain?,
+    onClick: (PhotoDomain) -> Unit,
 ) {
     Card(
         modifier = modifier
-            .clickable { onClick() }
+            .clickable { onClick(photoItem) }
             .fillMaxWidth()
             .height(Dimens150Dp),
         shape = RoundedCornerShape(Dimens16Dp),
@@ -86,7 +89,10 @@ fun PhotoItemDomain(
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.msjcat)
                 .crossfade(true)
+                .crossfade(300)
                 .dispatcher(Dispatchers.IO)
+                .diskCacheKey(photoItem.src.tiny)
+                .memoryCacheKey(photoItem.src.tiny)
                 .diskCachePolicy(CachePolicy.ENABLED)
                 .memoryCachePolicy(CachePolicy.ENABLED)
                 .build()

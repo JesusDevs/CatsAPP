@@ -84,13 +84,16 @@ fun CatListComponentWithRoom(
 
         items(
             count = catPhotoPagingItems.itemCount,
-            key = { index ->  index }
+            key = { index ->  catPhotoPagingItems.itemSnapshotList[index].hashCode()}
         ) { index ->
             catPhotoPagingItems[index]?.let { photoDomain ->
                 PhotoItemDomain(
                     modifier = Modifier.padding(top = Dimens8Dp),
                     photoItem = photoDomain,
-                    onClick = { catPhotoPagingItems[index] }
+                    onClick = {
+                        println( "PhotoItemDomain onClick index: $it")
+                        catPhotoPagingItems[index]
+                    }
                 )
             }
         }
