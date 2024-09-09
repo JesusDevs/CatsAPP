@@ -9,14 +9,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
-import androidx.paging.compose.itemKey
-import com.jys.catsapp.core.common.DimensUtil.Dimens150Dp
 import com.jys.catsapp.core.common.DimensUtil.Dimens16Dp
 import com.jys.catsapp.core.common.DimensUtil.Dimens8Dp
 import com.jys.catsapp.data.network.model.Photo
 import com.jys.catsapp.domain.model.PhotoDomain
-import okhttp3.internal.wait
-import org.koin.core.component.getScopeId
 
 @Composable
 fun CatListComponent(
@@ -88,13 +84,13 @@ fun CatListComponentWithRoom(
 
         items(
             count = catPhotoPagingItems.itemCount,
-            key = { index -> catPhotoPagingItems.itemSnapshotList[index]?.id ?: index
-            }
+            key = { index ->  index }
         ) { index ->
             catPhotoPagingItems[index]?.let { photoDomain ->
                 PhotoItemDomain(
                     modifier = Modifier.padding(top = Dimens8Dp),
-                    photoItem = photoDomain
+                    photoItem = photoDomain,
+                    onClick = { catPhotoPagingItems[index] }
                 )
             }
         }
