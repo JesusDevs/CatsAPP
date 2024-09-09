@@ -106,4 +106,9 @@ dependencies {
     implementation(libs.room.paging)
     implementation(libs.room.testing)
 
+    // ExoPlayer
+    implementation(libs.exoplayer.core)
+    implementation(libs.exoplayer.ui)
+    implementation(libs.exoplayer.hls)
+
 }

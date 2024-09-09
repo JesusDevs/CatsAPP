@@ -10,6 +10,9 @@ activityCompose = "1.9.1"
 composeBom = "2024.06.00"
 ksp = '1.9.0-1.0.12'
 
+exoplayer = "2.18.0"
+media3 = "1.0.0"
+
 navigationCompose = "2.7.7"
 coilCompose = "2.6.0"
 koin = "3.6.0-wasm-alpha2"
@@ -44,6 +47,10 @@ room-testing = { group = "androidx.room", name = "room-testing", version.ref = "
 ksp = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "ksp" }
 ksp-compiler = { group = "com.google.devtools.ksp", name = "ksp-compiler", version.ref = "ksp" }
 ksp-processor = { group = "com.google.devtools.ksp", name = "ksp-processor", version.ref = "ksp" }
+
+exoplayer-core = { group = "com.google.android.exoplayer", name = "exoplayer-core", version.ref = "exoplayer" }
+exoplayer-ui = { group = "com.google.android.exoplayer", name = "exoplayer-ui", version.ref = "exoplayer" }
+exoplayer-hls = { group = "com.google.android.exoplayer", name = "exoplayer-hls", version.ref = "exoplayer" }
 
 koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koin" }
 koin-android = { group = "io.insert-koin", name = "koin-android" }

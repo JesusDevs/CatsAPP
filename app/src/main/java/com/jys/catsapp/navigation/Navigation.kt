@@ -7,6 +7,7 @@ import androidx.navigation.compose.rememberNavController
 import com.jys.catsapp.presentation.HomeScreen
 import com.jys.catsapp.presentation.HomeScreenWithRoom
 import com.jys.catsapp.presentation.components.DashBoard
+import com.jys.catsapp.presentation.components.VideoBackgroundScreen
 
 @Composable
 fun Navigation() {
@@ -16,7 +17,7 @@ fun Navigation() {
         startDestination = "home",
     ) {
         composable("home") {
-            DashBoard(navController)
+            VideoBackgroundScreen { DashBoard(navController = navController) }
         }
         composable("homeWithOutRoom") {
             HomeScreen()
