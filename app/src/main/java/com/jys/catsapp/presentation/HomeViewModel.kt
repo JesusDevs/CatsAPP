@@ -1,7 +1,5 @@
 package com.jys.catsapp.presentation
 
-import android.util.Log
-import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -36,7 +34,7 @@ class HomeViewModel(
     init {
        viewModelScope.launch {
            //getListCatPhoto()
-           getListCatPhotoWithRoom()
+          // getListCatPhotoWithRoom()
        }
     }
 
@@ -53,7 +51,7 @@ class HomeViewModel(
             }
     }
 
-    private suspend fun getListCatPhotoWithRoom() {
+     suspend fun getListCatPhotoWithRoom() {
         getCatUseCaseWithRoom.execute(Unit)
             .cachedIn(viewModelScope)
             .flowOn(Dispatchers.IO)

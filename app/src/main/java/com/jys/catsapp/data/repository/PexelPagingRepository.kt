@@ -31,21 +31,21 @@ class PexelPagingRepository(
     }
 
 
-    @OptIn(ExperimentalPagingApi::class, FlowPreview::class)
+    @OptIn(ExperimentalPagingApi::class)
     override fun getPhotosWithRoom(query: String): Flow<PagingData<PhotoEntity>> {
         val pagingSourceFactory = { database.photoDao().getAllPhotos() }
 
         return Pager(
-           config = PagingConfig(
-                pageSize = 40,  // Tamaño de cada página de datos
-                enablePlaceholders = true,  // Habilitar placeholders para cuando no haya datos
-                prefetchDistance = 4,  // Realiza la carga cuando el usuario esté a 5 ítems del final
-                initialLoadSize = 20,  // Tamaño de la carga inicial
-                maxSize = 8000 // Máximo número de ítems a mantener en la memoria
-            ),
+           config =PagingConfig(
+               pageSize = 20,
+               initialLoadSize = 10,
+               prefetchDistance = 0,
+               enablePlaceholders = true,
+               maxSize = 80
+           ),
             remoteMediator = PexelRemoteMediator(query, apiService, database.photoDao(),database.photoRemoteKeyDao() ,  database),
             pagingSourceFactory = pagingSourceFactory
-        ).flow.distinctUntilChanged().debounce(1000)
+        ).flow
     }
 }
 
