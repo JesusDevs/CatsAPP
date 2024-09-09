@@ -22,6 +22,7 @@ fun createCustomImageLoader(context: Context): ImageLoader {
                 .maxSizePercent(0.25)
                 .build()
         }
+        .placeholder(R.drawable.placeholder)
         .build()
 }
 
