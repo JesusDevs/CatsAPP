@@ -32,14 +32,18 @@ class PexelPagingRepository(
         val pagingSourceFactory = { database.photoDao().getAllPhotos() }
 
         return Pager(
-           config =PagingConfig(
+           config = PagingConfig(
                pageSize = 20,
                initialLoadSize = 10,
-               prefetchDistance = 0,
-               enablePlaceholders = true,
+               prefetchDistance = 2,
+               enablePlaceholders = false,
                maxSize = 80
            ),
-            remoteMediator = PexelRemoteMediator(query, apiService, database.photoDao(),database.photoRemoteKeyDao() ,  database),
+            remoteMediator = PexelRemoteMediator(
+                query = query,
+                apiService = apiService,
+                catsDb = database
+            ),
             pagingSourceFactory = pagingSourceFactory
         ).flow
     }

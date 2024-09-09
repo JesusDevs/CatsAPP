@@ -31,13 +31,6 @@ class HomeViewModel(
     val catPhotoStateRoom: MutableStateFlow<PagingData<PhotoDomain>> get() = _catPhotoStateRoom
 
 
-    init {
-       viewModelScope.launch {
-           //getListCatPhoto()
-          // getListCatPhotoWithRoom()
-       }
-    }
-
     suspend fun getListCatPhoto() {
         getCatUseCase.execute(Unit)
             .cachedIn(viewModelScope)
