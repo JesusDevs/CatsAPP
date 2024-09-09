@@ -2,8 +2,8 @@ package com.jys.catsapp.data.network.model
 
 
 import com.google.gson.annotations.SerializedName
-import com.jys.catsapp.data.localDB.PhotoEntity
-import com.jys.catsapp.data.mapper.toEntity
+import com.jys.catsapp.data.database.entity.PhotoEntity
+import com.jys.catsapp.data.database.mapper.toEntity
 
 
 data class Photo(

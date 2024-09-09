@@ -14,12 +14,12 @@ fun createCustomImageLoader(context: Context): ImageLoader {
         .diskCache {
             DiskCache.Builder()
                 .directory(context.cacheDir.resolve("image_cache"))
-                .maxSizePercent(0.25)
+                .maxSizePercent(0.5)
                 .build()
         }
         .memoryCache {
             MemoryCache.Builder(context)
-                .maxSizePercent(0.25)
+                .maxSizePercent(0.5)
                 .build()
         }
         .placeholder(R.drawable.placeholder)

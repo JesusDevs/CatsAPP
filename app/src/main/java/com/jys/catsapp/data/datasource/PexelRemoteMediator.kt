@@ -5,12 +5,12 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.jys.catsapp.data.localDB.CatsDatabase
-import com.jys.catsapp.data.localDB.PhotoDao
-import com.jys.catsapp.data.localDB.PhotoEntity
-import com.jys.catsapp.data.localDB.PhotoRemoteKey
-import com.jys.catsapp.data.localDB.PhotoRemoteKeyDao
-import com.jys.catsapp.data.mapper.toEntity
+import com.jys.catsapp.data.database.CatsDatabase
+import com.jys.catsapp.data.database.PhotoDao
+import com.jys.catsapp.data.database.entity.PhotoEntity
+import com.jys.catsapp.data.database.entity.PhotoRemoteKeyEntity
+import com.jys.catsapp.data.database.PhotoRemoteKeyDao
+import com.jys.catsapp.data.database.mapper.toEntity
 import com.jys.catsapp.data.network.PexelsApiService
 import retrofit2.HttpException
 import java.io.IOException
@@ -93,7 +93,7 @@ class PexelRemoteMediator(
                 photos.firstOrNull()?.let { firstPhoto ->
                     println("Saving remote keys for first photo id: ${firstPhoto.id}")
                     photoRemoteKeyDao.insertOrReplace(
-                        PhotoRemoteKey(
+                        PhotoRemoteKeyEntity(
                             photoId = (firstPhoto.id ?: 0).toString(),
                             prevPageKey = prevPage,  // clave de la página anterior
                             nextPageKey = nextPage   // clave de la siguiente página
@@ -105,7 +105,7 @@ class PexelRemoteMediator(
                 photos.lastOrNull()?.let { lastPhoto ->
                     println("Saving remote keys for last photo id: ${lastPhoto.id}")
                     photoRemoteKeyDao.insertOrReplace(
-                        PhotoRemoteKey(
+                        PhotoRemoteKeyEntity(
                             photoId = (lastPhoto.id ?: 0).toString(),
                             prevPageKey = prevPage,
                             nextPageKey = nextPage
@@ -126,7 +126,7 @@ class PexelRemoteMediator(
         }
     }
 
-    private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, PhotoEntity>): PhotoRemoteKey? {
+    private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, PhotoEntity>): PhotoRemoteKeyEntity? {
         return state.pages.lastOrNull { it.data.isNotEmpty() }
             ?.data?.lastOrNull()?.let { photo ->
                 println("Fetching remote key for last item: ${photo.id}")
@@ -134,7 +134,7 @@ class PexelRemoteMediator(
             }
     }
 
-    private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, PhotoEntity>): PhotoRemoteKey? {
+    private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, PhotoEntity>): PhotoRemoteKeyEntity? {
         return state.pages.firstOrNull { it.data.isNotEmpty() }
             ?.data?.firstOrNull()?.let { photo ->
                 println("Fetching remote key for first item: ${photo.id}")
@@ -142,7 +142,7 @@ class PexelRemoteMediator(
             }
     }
 
-    private suspend fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, PhotoEntity>): PhotoRemoteKey? {
+    private suspend fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, PhotoEntity>): PhotoRemoteKeyEntity? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.id?.let { id ->
                 println("Fetching remote key for anchor position: $id")

@@ -9,14 +9,10 @@ import com.jys.catsapp.data.network.model.Photo
 import com.jys.catsapp.core.utils.ConstantsUtil.PagingConstants.PAGE_SIZE
 import com.jys.catsapp.data.datasource.PexelPagingDataSource
 import com.jys.catsapp.data.datasource.PexelRemoteMediator
-import com.jys.catsapp.data.localDB.CatsDatabase
-import com.jys.catsapp.data.localDB.PhotoEntity
+import com.jys.catsapp.data.database.CatsDatabase
+import com.jys.catsapp.data.database.entity.PhotoEntity
 import com.jys.catsapp.domain.repository.PexelPagingRepositoryInterface
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.map
 
 class PexelPagingRepository(
     private val apiService: PexelsApiService,

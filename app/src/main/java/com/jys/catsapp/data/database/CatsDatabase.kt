@@ -1,11 +1,12 @@
-package com.jys.catsapp.data.localDB
+package com.jys.catsapp.data.database
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.jys.catsapp.data.database.entity.PhotoEntity
+import com.jys.catsapp.data.database.entity.PhotoRemoteKeyEntity
+
 @Database(
-    entities = [PhotoEntity::class, PhotoRemoteKey::class],
+    entities = [PhotoEntity::class, PhotoRemoteKeyEntity::class],
     version = 1,
     exportSchema = false
 )

@@ -1,12 +1,11 @@
-package com.jys.catsapp.data.localDB
+package com.jys.catsapp.data.database
 
 import androidx.paging.PagingSource
 import androidx.room.Dao
-import androidx.room.Entity
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
-import androidx.room.PrimaryKey
 import androidx.room.Query
+import com.jys.catsapp.data.database.entity.PhotoEntity
 
 @Dao
 interface PhotoDao {

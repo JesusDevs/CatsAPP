@@ -1,7 +1,7 @@
-package com.jys.catsapp.data.mapper
+package com.jys.catsapp.data.database.mapper
 
-import com.jys.catsapp.data.localDB.PhotoEntity
-import com.jys.catsapp.data.localDB.SrcEntity
+import com.jys.catsapp.data.database.entity.PhotoEntity
+import com.jys.catsapp.data.database.entity.SrcEntity
 import com.jys.catsapp.data.network.model.Photo
 import com.jys.catsapp.data.network.model.Src
 

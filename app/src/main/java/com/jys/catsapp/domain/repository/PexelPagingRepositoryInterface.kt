@@ -1,7 +1,7 @@
 package com.jys.catsapp.domain.repository
 
 import androidx.paging.PagingData
-import com.jys.catsapp.data.localDB.PhotoEntity
+import com.jys.catsapp.data.database.entity.PhotoEntity
 import com.jys.catsapp.data.network.model.Photo
 import kotlinx.coroutines.flow.Flow
 

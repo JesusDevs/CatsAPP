@@ -1,9 +1,7 @@
-package com.jys.catsapp.data.localDB
+package com.jys.catsapp.data.database.entity
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.jys.catsapp.data.network.model.Photo
-import com.jys.catsapp.data.network.model.Src
 
 @Entity(tableName = "photos")
 data class PhotoEntity(
