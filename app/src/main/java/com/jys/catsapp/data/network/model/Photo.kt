@@ -2,6 +2,9 @@ package com.jys.catsapp.data.network.model
 
 
 import com.google.gson.annotations.SerializedName
+import com.jys.catsapp.data.database.entity.PhotoEntity
+import com.jys.catsapp.data.database.mapper.toEntity
+
 
 data class Photo(
     @SerializedName("alt")
@@ -21,9 +24,26 @@ data class Photo(
     @SerializedName("photographer_url")
     val photographerUrl: String?,
     @SerializedName("src")
-    val src: Src?,
+    val src: Src,
     @SerializedName("url")
     val url: String?,
     @SerializedName("width")
     val width: Int?
 )
+fun Photo.toEntity(page: Int, position: Int): PhotoEntity {
+    return PhotoEntity(
+        id = this.id,
+        width = this.width,
+        height = this.height,
+        url = this.url,
+        photographer = this.photographer,
+        photographerUrl = this.photographerUrl,
+        photographerId = this.photographerId,
+        avgColor = this.avgColor ?: "",
+        src = this.src.toEntity(),
+        alt = this.alt,
+        liked = this.liked,
+        pageNumber = page,
+        position = position
+    )
+}

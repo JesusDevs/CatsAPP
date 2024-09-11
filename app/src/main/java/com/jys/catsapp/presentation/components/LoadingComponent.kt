@@ -11,10 +11,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jys.catsapp.R
+import com.jys.catsapp.core.theme.Gold
 
 
 @Composable
@@ -26,7 +29,7 @@ fun PageLoader(modifier: Modifier = Modifier) {
     ) {
         Text(
             text = stringResource(id = R.string.loading),
-            color = MaterialTheme.colorScheme.primary,
+            color = Color.White,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             style = MaterialTheme.typography.titleMedium.copy(
@@ -34,7 +37,7 @@ fun PageLoader(modifier: Modifier = Modifier) {
                 textAlign = MaterialTheme.typography.titleMedium.textAlign
             )
         )
-        CircularProgressIndicator(Modifier.padding(top = 10.dp))
+        CircularProgressIndicator(Modifier.padding(top = 10.dp), color = Gold)
     }
 }
 
@@ -46,4 +49,10 @@ fun LoadingNextPageItem(modifier: Modifier) {
             .padding(10.dp)
             .wrapContentWidth(Alignment.CenterHorizontally)
     )
+}
+
+@Preview
+@Composable
+fun PageLoaderPreview() {
+    PageLoader()
 }

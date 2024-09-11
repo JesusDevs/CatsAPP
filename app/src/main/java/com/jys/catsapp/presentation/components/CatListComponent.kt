@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -22,8 +21,7 @@ fun CatListComponent(
         modifier = modifier
             .fillMaxSize()
             .padding(paddingValues)
-            .padding(horizontal = 16.dp)
-        ,
+            .padding(horizontal = 16.dp),
     ) {
         items(catPhotoPagingItems.itemCount) { index ->
             catPhotoPagingItems[index]?.let {
@@ -57,7 +55,7 @@ fun CatListComponent(
                     val errorBottom = catPhotoPagingItems.loadState.append as LoadState.Error
                     item {
                         ErrorMessageNextPageItem(
-                            modifier =Modifier.padding(vertical = 8.dp),
+                            modifier = Modifier.padding(vertical = 8.dp),
                             message = errorBottom.error.localizedMessage!!,
                             onClickRetry = { retry() })
                     }
@@ -66,3 +64,6 @@ fun CatListComponent(
         }
     }
 }
+
+
+
