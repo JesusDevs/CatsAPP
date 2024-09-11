@@ -1,4 +1,4 @@
-package com.jys.catsapp.core.generic.error
+package com.jys.catsapp.core.common.generic.error
 
 suspend fun <T> safeApiCall(call: suspend () -> retrofit2.Response<T>): Result<T> {
     return try {

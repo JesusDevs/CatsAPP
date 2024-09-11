@@ -13,6 +13,7 @@ import com.jys.catsapp.domain.usecase.GetCatUseCaseWithRoom
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.buffer
 import kotlinx.coroutines.flow.catch
@@ -60,11 +61,6 @@ class HomeViewModel(
         viewModelScope.launch {
             getCatUseCaseWithRoom.execute(Unit)
                 .cachedIn(viewModelScope)
-                .debounce(1000)
-                .retryWhen { cause, attempt ->
-                    println("Error: ${cause.message}")
-                    attempt < 2
-                }
                 .distinctUntilChanged()
                 .catch { error -> println("Error: ${error.message}") }
                 .buffer(

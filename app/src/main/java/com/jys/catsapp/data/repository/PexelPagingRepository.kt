@@ -6,7 +6,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.jys.catsapp.data.network.PexelsApiService
 import com.jys.catsapp.data.network.model.Photo
-import com.jys.catsapp.core.utils.ConstantsUtil.PagingConstants.PAGE_SIZE
+import com.jys.catsapp.core.common.utils.ConstantsUtil.PagingConstants.PAGE_SIZE
 import com.jys.catsapp.data.datasource.PexelPagingDataSource
 import com.jys.catsapp.data.datasource.PexelRemoteMediator
 import com.jys.catsapp.data.database.CatsDatabase

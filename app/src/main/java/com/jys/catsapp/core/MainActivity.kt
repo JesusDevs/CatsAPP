@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
 
 
 @Composable
-private fun EnableTransparentStatusBar() {
+fun EnableTransparentStatusBar() {
     val view = LocalView.current
     val darkTheme = isSystemInDarkTheme()
     if (!view.isInEditMode) {

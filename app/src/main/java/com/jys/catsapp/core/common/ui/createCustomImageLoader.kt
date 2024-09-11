@@ -1,4 +1,4 @@
-package com.jys.catsapp.core.common
+package com.jys.catsapp.core.common.ui
 
 import android.content.Context
 import coil.ImageLoader

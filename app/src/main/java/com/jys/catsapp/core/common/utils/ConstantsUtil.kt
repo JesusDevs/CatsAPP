@@ -1,4 +1,4 @@
-package com.jys.catsapp.core.utils
+package com.jys.catsapp.core.common.utils
 
 
 object ConstantsUtil {

@@ -1,4 +1,4 @@
-package com.jys.catsapp.core.extension
+package com.jys.catsapp.core.common.extension
 
 import androidx.compose.animation.animateColor
 import androidx.compose.animation.core.LinearEasing

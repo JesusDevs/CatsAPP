@@ -2,7 +2,6 @@ package com.jys.catsapp.presentation.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -21,12 +20,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.jys.catsapp.R
-import com.jys.catsapp.core.common.DimensUtil.Dimens1Dp
-import com.jys.catsapp.core.common.DimensUtil.Dimens32Dp
-import com.jys.catsapp.core.common.DimensUtil.Dimens8Dp
-import com.jys.catsapp.core.theme.Orange
+import com.jys.catsapp.core.common.utils.DimensUtil.Dimens1Dp
+import com.jys.catsapp.core.common.utils.DimensUtil.Dimens32Dp
+import com.jys.catsapp.core.common.utils.DimensUtil.Dimens8Dp
 
 @Composable
 fun ErrorMessageFullScreen(

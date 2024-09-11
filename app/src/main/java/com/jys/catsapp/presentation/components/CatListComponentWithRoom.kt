@@ -1,15 +1,18 @@
 package com.jys.catsapp.presentation.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
-import com.jys.catsapp.core.common.DimensUtil.Dimens16Dp
-import com.jys.catsapp.core.common.DimensUtil.Dimens8Dp
+import androidx.paging.compose.itemKey
+import com.jys.catsapp.core.common.utils.DimensUtil.Dimens16Dp
+import com.jys.catsapp.core.common.utils.DimensUtil.Dimens8Dp
 import com.jys.catsapp.domain.model.PhotoDomain
 
 @Composable
@@ -18,8 +21,10 @@ fun CatListComponentWithRoom(
     paddingValues: PaddingValues,
     catPhotoPagingItems: LazyPagingItems<PhotoDomain>,
 ) {
+
     LazyColumn(
         modifier = modifier
+            .background(color = Color.Black)
             .fillMaxSize()
             .padding(paddingValues)
             .padding(horizontal = Dimens16Dp)
@@ -28,16 +33,13 @@ fun CatListComponentWithRoom(
 
         items(
             count = catPhotoPagingItems.itemCount,
-            key = { index ->  catPhotoPagingItems.itemSnapshotList[index].hashCode()}
+            key = catPhotoPagingItems.itemKey { it.id?: 0 }
         ) { index ->
             catPhotoPagingItems[index]?.let { photoDomain ->
                 PhotoItemDomain(
                     modifier = Modifier.padding(top = Dimens8Dp),
-                    photoItem = photoDomain,
-                    onClick = {
-                        println( "PhotoItemDomain onClick index: $it")
-                        catPhotoPagingItems[index]
-                    }
+                    onClick = { catPhotoPagingItems[index] },
+                    photoDomain= photoDomain
                 )
             }
         }

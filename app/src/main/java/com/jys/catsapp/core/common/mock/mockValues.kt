@@ -1,4 +1,4 @@
-package com.jys.catsapp.core.mock
+package com.jys.catsapp.core.common.mock
 
 import com.jys.catsapp.data.network.model.Photo
 import com.jys.catsapp.data.network.model.Src

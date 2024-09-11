@@ -21,19 +21,19 @@ import com.jys.catsapp.R
 import com.jys.catsapp.core.common.utils.DimensUtil.Dimens150Dp
 import com.jys.catsapp.core.common.utils.DimensUtil.Dimens16Dp
 import com.jys.catsapp.core.common.utils.DimensUtil.Dimens1Dp
-import com.jys.catsapp.data.network.model.Photo
+import com.jys.catsapp.domain.model.PhotoDomain
 import kotlinx.coroutines.Dispatchers
 
 @Composable
-fun PhotoItem(
+fun PhotoItemDomain(
     modifier: Modifier = Modifier,
-    photoItem: Photo,
-    onClick: () -> Photo?
+    onClick: (PhotoDomain) -> Unit,
+    photoDomain: PhotoDomain,
 ) {
     val context = LocalContext.current
     Card(
         modifier = modifier
-            .clickable { onClick() }
+            .clickable { onClick(photoDomain) }
             .fillMaxWidth()
             .height(Dimens150Dp),
         shape = RoundedCornerShape(Dimens16Dp),
@@ -43,15 +43,15 @@ fun PhotoItem(
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            val imageRequest = remember(photoItem.src.tiny) {
+            val imageRequest = remember(photoDomain.src.tiny) {
                 ImageRequest.Builder(context)
                     .dispatcher(Dispatchers.IO)
-                    .data(photoItem.src.tiny)
+                    .data(photoDomain.src.tiny)
                     .placeholder(R.drawable.placeholder)
                     .crossfade(true)
                     .crossfade(300)
-                    .diskCacheKey(photoItem.src.tiny)
-                    .memoryCacheKey(photoItem.src.tiny)
+                    .diskCacheKey(photoDomain.src.tiny)
+                    .memoryCacheKey(photoDomain.src.tiny)
                     .diskCachePolicy(CachePolicy.ENABLED)
                     .memoryCachePolicy(CachePolicy.ENABLED)
                     .build()
@@ -67,6 +67,3 @@ fun PhotoItem(
         }
     }
 }
-
-
-

@@ -1,6 +1,6 @@
 package com.jys.catsapp.data.network
 
-import com.jys.catsapp.core.utils.ConstantsUtil.PagingConstants.AUTHORIZATION
+import com.jys.catsapp.core.common.utils.ConstantsUtil.PagingConstants.AUTHORIZATION
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
