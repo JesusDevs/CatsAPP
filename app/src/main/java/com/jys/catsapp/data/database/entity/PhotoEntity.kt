@@ -1,4 +1,5 @@
 package com.jys.catsapp.data.database.entity
+import android.graphics.Bitmap
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey

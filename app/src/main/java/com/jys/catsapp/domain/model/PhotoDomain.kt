@@ -1,7 +1,10 @@
 package com.jys.catsapp.domain.model
 
+
+import androidx.compose.runtime.Immutable
 import com.jys.catsapp.data.database.entity.PhotoEntity
 
+@Immutable
 data class PhotoDomain(
     val id: Int?,
     val width: Int?,

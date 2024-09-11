@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -33,6 +34,7 @@ fun PhotoItem(
     photoItem: Photo,
     onClick: () -> Photo?
 ) {
+    val context = LocalContext.current
     Card(
         modifier = modifier
             .clickable { onClick() }
@@ -45,21 +47,26 @@ fun PhotoItem(
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            val image = ImageRequest.Builder(LocalContext.current)
-                .data(photoItem.src.tiny)
-                .placeholder(R.drawable.placeholder)
-                .error(R.drawable.msjcat)
-                .crossfade(true)
-                .dispatcher(Dispatchers.IO)
-                .diskCachePolicy(CachePolicy.ENABLED)
-                .memoryCachePolicy(CachePolicy.ENABLED)
-                .build()
+            val imageRequest = remember(photoItem.url) {
+                ImageRequest.Builder(context)
+                    .data(photoItem.url)
+                    .placeholder(R.drawable.placeholder)
+                    .error(R.drawable.msjcat)
+                    .crossfade(true)
+                    .crossfade(300)
+                    .dispatcher(Dispatchers.IO)
+                    .diskCacheKey(photoItem.src.tiny)
+                    .memoryCacheKey(photoItem.src.tiny)
+                    .diskCachePolicy(CachePolicy.ENABLED)
+                    .memoryCachePolicy(CachePolicy.ENABLED)
+                    .build()
+            }
 
             AsyncImage(
                 modifier = Modifier
                     .fillMaxSize(),
                 contentScale = ContentScale.FillWidth,
-                model = image,
+                model = imageRequest,
                 contentDescription = ""
             )
         }
@@ -72,6 +79,7 @@ fun PhotoItemDomain(
     photoItem: PhotoDomain,
     onClick: (PhotoDomain) -> Unit,
 ) {
+    val context = LocalContext.current
     Card(
         modifier = modifier
             .clickable { onClick(photoItem) }
@@ -84,24 +92,26 @@ fun PhotoItemDomain(
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            val image = ImageRequest.Builder(LocalContext.current)
-                .data(photoItem.src.tiny)
-                .placeholder(R.drawable.placeholder)
-                .error(R.drawable.msjcat)
-                .crossfade(true)
-                .crossfade(300)
-                .dispatcher(Dispatchers.IO)
-                .diskCacheKey(photoItem.src.tiny)
-                .memoryCacheKey(photoItem.src.tiny)
-                .diskCachePolicy(CachePolicy.ENABLED)
-                .memoryCachePolicy(CachePolicy.ENABLED)
-                .build()
+            val imageRequest = remember(photoItem.src.tiny) {
+                ImageRequest.Builder(context)
+                    .data(photoItem.url)
+                    .placeholder(R.drawable.placeholder)
+                    .error(R.drawable.msjcat)
+                    .crossfade(true)
+                    .crossfade(300)
+                    .dispatcher(Dispatchers.IO)
+                    .diskCacheKey(photoItem.src.tiny)
+                    .memoryCacheKey(photoItem.src.tiny)
+                    .diskCachePolicy(CachePolicy.ENABLED)
+                    .memoryCachePolicy(CachePolicy.ENABLED)
+                    .build()
+            }
 
             AsyncImage(
                 modifier = Modifier
                     .fillMaxSize(),
                 contentScale = ContentScale.FillWidth,
-                model = image,
+                model = imageRequest,
                 contentDescription = ""
             )
         }
