@@ -15,10 +15,12 @@ import org.koin.androidx.compose.koinViewModel
 fun HomeScreenWithRoom() {
     val viewModel: HomeViewModel = koinViewModel()
     val stateUI = viewModel.catPhotoStateRoom.collectAsLazyPagingItems()
+    val stateIn = viewModel.catPhotoStateRoomStateIn.collectAsLazyPagingItems()
+
     LaunchedEffect(Unit) {
-        viewModel.getListCatPhotoWithRoom()
+        //viewModel.getListCatPhotoWithRoom()
     }
-    HomeScreenContentWithRoom(stateUI)
+    HomeScreenContentWithRoom(stateIn)
 }
 
 @Composable

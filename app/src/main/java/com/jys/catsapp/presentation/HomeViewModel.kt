@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.filter
-import androidx.paging.map
 import com.jys.catsapp.data.network.model.Photo
 import com.jys.catsapp.domain.model.PhotoDomain
 import com.jys.catsapp.domain.usecase.GetCatUseCase
@@ -13,19 +12,16 @@ import com.jys.catsapp.domain.usecase.GetCatUseCaseWithRoom
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.buffer
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectIndexed
-import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.distinctUntilChangedBy
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.retry
-import kotlinx.coroutines.flow.retryWhen
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
@@ -41,7 +37,6 @@ class HomeViewModel(
         MutableStateFlow(value = PagingData.empty())
     val catPhotoStateRoom: MutableStateFlow<PagingData<PhotoDomain>> get() = _catPhotoStateRoom
 
-
     suspend fun getListCatPhoto() {
         getCatUseCase.execute(Unit)
             .cachedIn(viewModelScope)
@@ -55,10 +50,27 @@ class HomeViewModel(
             }
     }
 
+    //Opcion usando state in para controlar inicio de data y estados
+    val catPhotoStateRoomStateIn: StateFlow<PagingData<PhotoDomain>> = flow {
+        getCatUseCaseWithRoom.execute(Unit)
+            .cachedIn(viewModelScope)
+            .distinctUntilChanged()
+            .catch { error -> println("Error: ${error.message}") }
+            .buffer(
+                capacity = 5,
+                onBufferOverflow = BufferOverflow.DROP_OLDEST
+            )
+            .collect { value ->
+                emit(value)
+            }
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Lazily,
+        initialValue = PagingData.empty()
+    )
 
-    @OptIn(FlowPreview::class)
     suspend fun getListCatPhotoWithRoom() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             getCatUseCaseWithRoom.execute(Unit)
                 .cachedIn(viewModelScope)
                 .distinctUntilChanged()
@@ -72,4 +84,12 @@ class HomeViewModel(
                 }
         }
     }
+}
+
+
+sealed class HomeState {
+    object Loading : HomeState()
+    data class Success(val data: PagingData<PhotoDomain>) : HomeState()
+    data class Error(val message: String) : HomeState()
+    object Empty : HomeState()
 }
