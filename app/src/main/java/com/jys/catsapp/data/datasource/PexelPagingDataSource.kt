@@ -2,8 +2,8 @@ package com.jys.catsapp.data.datasource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.jys.catsapp.core.common.generic.error.Result
-import com.jys.catsapp.core.common.generic.error.safeApiCall
+import com.jys.catsapp.core.common.generic.resultApi.Result
+import com.jys.catsapp.core.common.generic.resultApi.safeApiCall
 import com.jys.catsapp.core.common.utils.ConstantsUtil.PagingConstants.PAGE_SIZE
 import com.jys.catsapp.data.network.PexelsApiService
 import com.jys.catsapp.data.network.model.Photo

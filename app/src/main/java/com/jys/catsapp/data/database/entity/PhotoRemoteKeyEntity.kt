@@ -7,5 +7,6 @@ import androidx.room.PrimaryKey
 data class PhotoRemoteKeyEntity(
     @PrimaryKey val photoId: String,
     val prevPageKey: Int?,
-    val nextPageKey: Int?
+    val nextPageKey: Int?,
+    val pageNumber: Int?
 )

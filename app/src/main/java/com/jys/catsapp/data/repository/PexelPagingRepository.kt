@@ -4,13 +4,14 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.jys.catsapp.data.network.PexelsApiService
-import com.jys.catsapp.data.network.model.Photo
 import com.jys.catsapp.core.common.utils.ConstantsUtil.PagingConstants.PAGE_SIZE
-import com.jys.catsapp.data.datasource.PexelPagingDataSource
-import com.jys.catsapp.data.datasource.PexelRemoteMediator
 import com.jys.catsapp.data.database.CatsDatabase
 import com.jys.catsapp.data.database.entity.PhotoEntity
+import com.jys.catsapp.data.datasource.PexelPagingDataSource
+import com.jys.catsapp.data.datasource.PexelRemoteMediator
+import com.jys.catsapp.data.datasource.PexelRemoteMediatorRemoteKeyExample
+import com.jys.catsapp.data.network.PexelsApiService
+import com.jys.catsapp.data.network.model.Photo
 import com.jys.catsapp.domain.repository.PexelPagingRepositoryInterface
 import kotlinx.coroutines.flow.Flow
 
@@ -35,9 +36,9 @@ class PexelPagingRepository(
            config = PagingConfig(
                pageSize = 20,
                initialLoadSize = 10,
-               prefetchDistance = 2,
-               enablePlaceholders = false,
-               maxSize = 80
+               prefetchDistance = 4,
+               enablePlaceholders = true,
+               maxSize = 800
            ),
             remoteMediator = PexelRemoteMediator(
                 query = query,

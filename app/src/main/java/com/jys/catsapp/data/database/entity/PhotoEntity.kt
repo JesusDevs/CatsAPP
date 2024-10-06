@@ -1,5 +1,4 @@
 package com.jys.catsapp.data.database.entity
-import android.graphics.Bitmap
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -17,7 +16,7 @@ data class PhotoEntity(
     val photographerId: Int?,
     val photographerUrl: String?,
     val width: Int?,
-    val pageNumber: Int? = 0,
+    val pageNumber: Int? = null,
     var position: Int? = 0
 )
 

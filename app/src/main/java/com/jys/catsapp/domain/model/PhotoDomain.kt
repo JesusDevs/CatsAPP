@@ -16,7 +16,8 @@ data class PhotoDomain(
     val avgColor: String?,
     val src: SrcDomain,
     val alt: String?,
-    val liked: Boolean?
+    val liked: Boolean?,
+    val pageNumber: Int?
 )
 
 fun PhotoEntity.toDomain(): PhotoDomain {
@@ -40,7 +41,8 @@ fun PhotoEntity.toDomain(): PhotoDomain {
             tiny = null
         ),
         alt = this.alt,
-        liked = this.liked
+        liked = this.liked,
+        pageNumber = this.pageNumber
     )
 }
 

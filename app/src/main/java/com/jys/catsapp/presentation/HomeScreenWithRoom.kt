@@ -8,17 +8,22 @@ import androidx.compose.ui.Modifier
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.jys.catsapp.domain.model.PhotoDomain
+import com.jys.catsapp.presentation.components.AnimatedBottomBar
+import com.jys.catsapp.presentation.components.AnimatedCircularNavigationBar
 import com.jys.catsapp.presentation.components.CatListComponentWithRoom
+import com.jys.catsapp.presentation.components.LiquidBottomBar
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun HomeScreenWithRoom() {
     val viewModel: HomeViewModel = koinViewModel()
     val stateUI = viewModel.catPhotoStateRoom.collectAsLazyPagingItems()
+    val stateIn = viewModel.catPhotoStateRoomStateIn.collectAsLazyPagingItems()
+
     LaunchedEffect(Unit) {
-        viewModel.getListCatPhotoWithRoom()
+        //viewModel.getListCatPhotoWithRoom()
     }
-    HomeScreenContentWithRoom(stateUI)
+    HomeScreenContentWithRoom(stateIn)
 }
 
 @Composable
