@@ -15,6 +15,7 @@ import com.jys.catsapp.navigation.NavigationRoute.HOME_WITHOUT_ROOM
 import com.jys.catsapp.navigation.NavigationRoute.HOME_WITH_ROOM
 import com.jys.catsapp.presentation.HomeScreen
 import com.jys.catsapp.presentation.HomeScreenWithRoom
+import com.jys.catsapp.presentation.components.AnimatedCircularMenu
 import com.jys.catsapp.presentation.components.DashBoard
 
 @Composable
@@ -29,7 +30,7 @@ fun Navigation() {
         enterTransition = { defaultEnterTransition() }
     ) {
         composable(DASHBOARD) {
-            VideoBackgroundScreen(
+          VideoBackgroundScreen(
                 pathVideo = VIDEO_SAMURAI_CAT,
                 content = { DashBoard(navController = navController) }
             )
